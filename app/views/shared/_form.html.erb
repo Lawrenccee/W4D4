@@ -1,0 +1,31 @@
+<% if action == :session %>
+  <% message = 'login' %>
+  <% action_url = session_url %>
+<% else  %>
+  <% message = 'signup' %>
+  <% action_url = users_url %>
+<% end %>
+
+<div>
+  <div>
+    <%= message %>
+  </div>
+
+  <%= render partial: "shared/errors" %>
+
+  <form action="<%= action_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <label for="user_name">Username: </label>
+    <input id="user_name" type="text" name="user[user_name]" value="">
+
+    <br>
+
+    <label for="password">Password: </label>
+    <input id="password" type="password" name="user[password]" value="">
+
+    <br>
+
+    <input type="submit" value="<%= message %>">
+  </form>
+</div>
